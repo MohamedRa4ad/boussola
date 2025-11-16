@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BOUSSOLA — Coming Soon</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at top, #0a0a0a, #000000 70%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+      padding: 20px;
+    }
+
+    .logo {
+      font-size: 3rem;
+      letter-spacing: 6px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      animation: glow 3s infinite ease-in-out;
+    }
+
+    @keyframes glow {
+      0% { text-shadow: 0 0 10px #ffffff50; }
+      50% { text-shadow: 0 0 25px #ffffff90; }
+      100% { text-shadow: 0 0 10px #ffffff50; }
+    }
+
+    .coming {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    .sub {
+      opacity: 0.7;
+      margin-bottom: 35px;
+    }
+
+    .notify {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    input {
+      padding: 12px 18px;
+      width: 270px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 12px 22px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background: #ffffff;
+      color: #000;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: #e5e5e5;
+    }
+
+    .floating {
+      position: absolute;
+      width: 170%;
+      height: 170%;
+      top: -35%;
+      left: -35%;
+      background: radial-gradient(circle, transparent 40%, #ffffff05 41%);
+      animation: spin 25s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="floating"></div>
+
+  <div class="container">
+    <div class="logo">BOUSSOLA</div>
+    <div class="coming">We're Launching Soon</div>
+    <div class="sub">Fashion with direction. Stay tuned for something big.</div>
+
+    <div class="notify">
+      <input type="email" placeholder="Enter your email" />
+      <button>Notify Me</button>
+    </div>
+  </div>
+
+  <canvas id="particles"></canvas>
+
+  <script>
+    const c = document.getElementById('particles');
+    const ctx = c.getContext('2d');
+    function resize() { c.width = window.innerWidth; c.height = window.innerHeight; }
+    window.addEventListener('resize', resize); resize();
+
+    const particles = Array.from({length: 60}, () => ({
+      x: Math.random() * c.width,
+      y: Math.random() * c.height,
+      r: Math.random() * 2 + 1,
+      s: Math.random() * 0.4 + 0.2
+    }));
+
+    function animate() {
+      ctx.clearRect(0,0,c.width,c.height);
+      ctx.fillStyle = 'rgba(255,255,255,0.25)';
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fill();
+        p.y += p.s;
+        if (p.y > c.height) p.y = -10;
+      });
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+</html>
