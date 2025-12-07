@@ -298,26 +298,36 @@
             align-items: center;
         }
 
-        .cart-btn {
-            position: relative;
-        }
+          .cart-btn {
+    position: relative;
+    width: 55px;          /* نفس حجم الدائرة */
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;   /* ✅ مهم جدًا */
+}
 
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--gradient-primary);
-            color: white;
-            font-size: 0.7rem;
-            font-weight: 900;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid var(--dark-bg);
-        }
+
+       .cart-count {
+    position: absolute;
+    top: -6px;           /* ✅ تطلع فوق الدائرة */
+    right: -6px;
+    background: linear-gradient(135deg, #7c3aed, #ec4899);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 900;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #0b1220;  /* نفس لون خلفيتك */
+    z-index: 9999;
+    pointer-events: none;
+}
 
         .mobile-menu-btn {
             display: none;
@@ -2352,6 +2362,7 @@
 </body>
 
 </html>
+
 
 
 
